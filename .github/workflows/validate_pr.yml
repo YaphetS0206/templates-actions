@@ -1,0 +1,35 @@
+name: Validate Pull Request
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+
+jobs:
+  validate-pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Validate PR Description
+        id: validate-pr
+        run: |
+          # Verifica que la descripción del PR no esté vacía
+          if [[ -z "${{ github.event.pull_request.body }}" ]]; then
+            echo "ERROR: La descripción del PR está vacía."
+            exit 1
+          fi
+
+          # Verifica que la plantilla se haya completado correctamente
+          if ! echo "${{ github.event.pull_request.body }}" | grep -q "Historia de Usuario"; then
+            echo "ERROR: No se ha completado la sección 'Historia de Usuario'."
+            exit 1
+          fi
+
+          if ! echo "${{ github.event.pull_request.body }}" | grep -q "Aplicación afectada"; then
+            echo "ERROR: No se ha completado la sección 'Aplicación afectada'."
+            exit 1
+          fi
+
+          echo "PR description is valid."
