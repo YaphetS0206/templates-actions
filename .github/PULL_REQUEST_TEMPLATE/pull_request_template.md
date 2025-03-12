@@ -1,5 +1,5 @@
 ## Historia de Usuario (ClickUp)
-- **Enlace a la historia de usuario en ClickUp**: [Ingresa el enlace aquí](#)
+- **Enlace a la historia de usuario en ClickUp**: www.test.com(#)
 
 ## Aplicación
 - **Aplicación afectada**: [Describe la aplicación o módulo afectado]
