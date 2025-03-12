@@ -1,0 +1,20 @@
+name: QA Validation
+
+on:
+  pull_request:
+    branches:
+      - qa
+    types: [opened, edited, synchronize]
+
+jobs:
+  qa-checks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run QA-specific checks
+        run: |
+          echo "Running QA-specific checks..."
+          # Aquí puedes agregar validaciones específicas para QA
